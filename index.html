@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>โปรแกรมคำนวณหาค่าดัชนีมวลกาย (BMI)</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Roboto:400,700&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+  <title>โปรแกรมคำนวณหาค่าดัชนีมวลกาย (BMI)</title>
+	<style>
+	.button {
+    background-color: #1a237e; /* blue */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 22px;
+    margin: 4px 2px;
+    cursor: pointer;
+	}	
+	.button {width: 300px;
+	height:40px;}
+	@font face {
+	font-family:"TH SarabunPSK";
+	font-size:24px;
+	}
+	div{
+	font-family:"TH SarabunPSK";
+	font-size:24px;
+	
+	}
+	table {
+	border-collapse:collapse;
+	box-shadow: 5px 5px 10px lightblue;
+	}
+	.divider { 
+	width: 37%;
+    height: 3px;
+  	background: linear-gradient(to right, red, blue);
+	margin: 0 auto;
+	}
+	.input-colorido {
+  border: 1px solid lightblue;
+  height: 30px;
+  width:300px; 
+	}
+	</style>
+</head>
+</head>
+
+<body>
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="index.html">
+            <span>
+              CPU
+            </span>
+          </a>
+          <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex mx-auto flex-column flex-lg-row align-items-center">
+              <ul class="navbar-nav  ">
+                <li class="nav-item active">
+                  <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="about.html"> About </a>                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="service.html"> Services </a>                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="contact.html">Contact us</a>                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Login</a>                </li>
+              </ul>
+            </div>
+          </div>
+          <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
+            <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
+          </form>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+    
+       <div>
+<h1 align="center"><font color="#0066CC" face="DSN SuKumWit" size="+6">โปรแกรมคำนวณหาค่าดัชนีมวลกาย (BMI)<div class="divider"></div></font></h1>
+<table style="width="80%" height="100%" border="1" align="center" cellspacing="1" bordercolor="#CCCCCC" bgcolor="#FEFEFE">
+<tbody>
+  <tr>
+    <td width="138" height="66"><strong>น้ำหนัก :</strong></td>
+    <td width="320"><input type="text" class="input-colorido" id="weight"></Br>กิโลกรัม</td>
+  </tr>
+  <tr>
+    <td height="63"><strong>ส่วนสูง :</strong></td>
+    <td><input type="text" class="input-colorido" id="height"></Br>เซนติเมตร</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><button class="button" onclick="calculateBMI()"><b><font face="TH SarabunPSK">คำนวณ</font></b></button></td>
+  </tr>
+  <tr>
+    <td height="60"><strong>ค่าที่ได้: </strong><br></td>
+    <td><div id="result"><span id="bmi"></span></td>
+  </tr>
+  <tr>
+    <td height="54"><strong>คุณอยู่ในเกณฑ์:</strong></td>
+    <td><span id="category"></span></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>
+      <button class="button" onclick="clearData()"><font face="TH SarabunPSK" size="+2"><strong>เคลียร์ข้อมูล</strong></font></button>
+    </td>
+  </tr>
+  <script>
+function calculateBMI() {
+  var weight = document.getElementById("weight").value;
+  var height = document.getElementById("height").value;
+
+  if (weight == "" || height == "") {
+    alert("กรุณากรอกข้อมูลน้ำหนักและส่วนสูง");
+    return;
+  }
+
+  var bmi = weight / (height / 100 * height / 100);
+  document.getElementById("bmi").innerHTML = bmi.toFixed(2);
+
+  var category = "";
+  if (bmi < 18.5) {
+    category = "น้ำหนักน้อยกว่าปกติ";
+  } else if (bmi < 25) {
+    category = "น้ำหนักปกติ";
+  } else if (bmi < 30) {
+    category = "น้ำหนักเกิน";
+  } else {
+    category = "โรคอ้วน";
+  }
+  document.getElementById("category").innerHTML = category;
+}
+
+function clearData() {
+  document.getElementById("weight").value = "";
+  document.getElementById("height").value = "";
+  document.getElementById("bmi").innerHTML = "";
+  document.getElementById("category").innerHTML = "";
+}
+
+</script>
+
+</table>
+</tbody>
+</div>
+            
+          
+             
+</body>
+
+</html>
